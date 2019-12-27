@@ -95,7 +95,9 @@ public class SINDEE extends AppCompatActivity {
                 public void onResults(Bundle bundle) {
                     ArrayList<? extends String> results;
                     results = bundle.getParcelableArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                    处理结果(results);
+                    if (results != null) {
+                        处理结果(results);
+                    }
                 }
 
                 @Override
