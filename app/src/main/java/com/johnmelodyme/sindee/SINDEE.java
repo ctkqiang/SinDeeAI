@@ -3,6 +3,7 @@ package com.johnmelodyme.sindee;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
@@ -113,17 +114,21 @@ public class SINDEE extends AppCompatActivity {
             @Override
             public void onInit(int status) {
                 if (文字转语音.getEngines().size() == 0){
-                    String Msg;
-                    Msg = "Please Install a TTS Engine";
+                    String Msg, URL;
+                    Intent 安裝文字转语音器;
+                    Msg = "請安裝文字转语音器";
+                    URL = "https://bit.ly/2spFOjd";
                     Toast.makeText(SINDEE.this, Msg,
                             Toast.LENGTH_SHORT)
                             .show();
+                    安裝文字转语音器 = new Intent(Intent.ACTION_VIEW, Uri.parse(URL));
+                    startActivity(安裝文字转语音器);
                     finish();
                 }
                 else {
                     文字转语音.setLanguage(Locale.CHINESE);
                     String 欣蒂開始說;
-                    欣蒂開始說 = "嗨， 我是欣蒂，您的虛擬助手。";
+                    欣蒂開始說 = "嗨， 我是欣蒂，您的虛擬助手, 什麼事我可以幫到的嗎？";
                     欣蒂說(欣蒂開始說);
                 }
             }
