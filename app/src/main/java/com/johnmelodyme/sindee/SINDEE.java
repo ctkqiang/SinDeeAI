@@ -22,8 +22,8 @@ import java.util.Locale;
 
 public class SINDEE extends AppCompatActivity {
     ImageView 欣蒂按键;
-    TextToSpeech textToSpeech;
-    SpeechRecognizer speechRecognizer;
+    TextToSpeech 文字转语音;
+    SpeechRecognizer 语音识别;
 
     public void onStart(){
         super.onStart();
@@ -46,8 +46,8 @@ public class SINDEE extends AppCompatActivity {
 
     private void 語音識別開始() {
         if (SpeechRecognizer.isRecognitionAvailable(SINDEE.this)){
-            speechRecognizer = SpeechRecognizer.createSpeechRecognizer(SINDEE.this);
-            speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            语音识别 = SpeechRecognizer.createSpeechRecognizer(SINDEE.this);
+            语音识别.setRecognitionListener(new RecognitionListener() {
                 @Override public void onReadyForSpeech(Bundle params) {
 
                 }
@@ -81,7 +81,7 @@ public class SINDEE extends AppCompatActivity {
                 public void onResults(Bundle bundle) {
                     ArrayList<? extends String> results;
                     results = bundle.getParcelableArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                    processRESULT(results);
+                    处理结果(results);
                 }
 
                 @Override
@@ -97,7 +97,7 @@ public class SINDEE extends AppCompatActivity {
         }
     }
 
-    private void processRESULT(ArrayList<? extends String> command) {
+    private void 处理结果(ArrayList<? extends String> command) {
         //command = command.toLowerCase();
         // ALL THE COMMAND HERE
 
@@ -109,10 +109,10 @@ public class SINDEE extends AppCompatActivity {
     }
 
     private void 文字轉語音開始() {
-        textToSpeech = new TextToSpeech(SINDEE.this, new TextToSpeech.OnInitListener() {
+        文字转语音 = new TextToSpeech(SINDEE.this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                if (textToSpeech.getEngines().size() == 0){
+                if (文字转语音.getEngines().size() == 0){
                     String Msg;
                     Msg = "Please Install a TTS Engine";
                     Toast.makeText(SINDEE.this, Msg,
@@ -121,7 +121,7 @@ public class SINDEE extends AppCompatActivity {
                     finish();
                 }
                 else {
-                    textToSpeech.setLanguage(Locale.US);
+                    文字转语音.setLanguage(Locale.US);
                     String SINDEEMSG;
                     SINDEEMSG = "Hello, I am Sin Dee.  Your Personal Assistant. What can I help you?";
                     欣蒂說(SINDEEMSG);
@@ -132,9 +132,9 @@ public class SINDEE extends AppCompatActivity {
 
     private void 欣蒂說(String command) {
         if (Build.VERSION.SDK_INT > 0b10011){
-            textToSpeech.speak(command, TextToSpeech.QUEUE_FLUSH, null, null);
+            文字转语音.speak(command, TextToSpeech.QUEUE_FLUSH, null, null);
         } else {
-            textToSpeech.speak(command, TextToSpeech.QUEUE_FLUSH, null);
+            文字转语音.speak(command, TextToSpeech.QUEUE_FLUSH, null);
         }
     }
 
@@ -144,6 +144,6 @@ public class SINDEE extends AppCompatActivity {
 
     protected void onPause(){
         super.onPause();
-        textToSpeech.shutdown();
+        文字转语音.shutdown();
     }
 }
