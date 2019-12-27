@@ -47,6 +47,7 @@ public class SINDEE extends AppCompatActivity {
         語音識別開始();
     }
 
+    // 語音識別開始功能:
     private void 語音識別開始() {
         if (SpeechRecognizer.isRecognitionAvailable(SINDEE.this)){
             语音识别 = SpeechRecognizer.createSpeechRecognizer(SINDEE.this);
@@ -100,15 +101,18 @@ public class SINDEE extends AppCompatActivity {
         }
     }
 
+    // 处理结果功能:
     private void 处理结果(ArrayList<? extends String> command) {
-        //command = command.toLowerCase();
-        // ALL THE COMMAND HERE
-
+        // 命令::
         if (command.contains("誰")){
             欣蒂說("我是欣蒂");
+        } else {
+            欣蒂說("我不明白");
         }
+
     }
 
+    // 文字轉語音開始功能:
     private void 文字轉語音開始() {
         文字转语音 = new TextToSpeech(SINDEE.this, new TextToSpeech.OnInitListener() {
             @Override
@@ -135,6 +139,7 @@ public class SINDEE extends AppCompatActivity {
         });
     }
 
+    // 欣蒂說話功能：
     private void 欣蒂說(String command) {
         if (Build.VERSION.SDK_INT > 0b10011){
             文字转语音.speak(command, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -143,7 +148,8 @@ public class SINDEE extends AppCompatActivity {
         }
     }
 
-    public void mic(View v){
+    // 麥克風功能:
+    public void 麥克風(View v){
         Toast.makeText(getApplicationContext(),
                 "什麼我可以幫到的嗎？",
                 Toast.LENGTH_SHORT)
