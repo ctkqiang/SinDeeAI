@@ -30,7 +30,7 @@
       <option name="IGNORE_JAVADOC_PERIOD" value="true" />
       <option name="IGNORE_DUPLICATED_THROWS" value="false" />
       <option name="IGNORE_POINT_TO_ITSELF" value="false" />
-      <option name="myAdditionalJavadocTags" value="AUTHOR,COPYRIGHT,PROJECT_NAME:" />
+      <option name="myAdditionalJavadocTags" value="AUTHOR,COPYRIGHT,PROJECT_NAME:,開發人員,项目名:,版权" />
     </inspection_tool>
   </profile>
 </component>

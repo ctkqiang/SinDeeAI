@@ -2,9 +2,11 @@ package com.johnmelodyme.sindee;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
@@ -15,9 +17,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * @AUTHOR : JOHN MELODY MELISSA
- * @COPYRIGHT : JOHN MELODY MELISSA COPYRIGHT 2020
- * @PROJECT_NAME: SinDee, {Is a Virtual Assistant Name after My GF}
+ * @開發人員 : JOHN MELODY MELISSA 鐘智強
+ * @版权 : ALL RIGHT RESERVED  ©  JOHN MELODY MELISSA COPYRIGHT || 保留所有权利 © 鐘智強 版权
+ * @项目名: SinDee, {Is a Virtual Assistant Name after My GF} || 我根據我的女朋友創建的 AI 安卓 ❤️
  */
 
 public class SINDEE extends AppCompatActivity {
@@ -101,10 +103,8 @@ public class SINDEE extends AppCompatActivity {
         //command = command.toLowerCase();
         // ALL THE COMMAND HERE
 
-        if (command.contains("who")){
-            if(command.contains("are you")){
-                欣蒂說("I am Sin Dee");
-            }
+        if (command.contains("誰")){
+            欣蒂說("我是欣蒂");
         }
     }
 
@@ -121,10 +121,10 @@ public class SINDEE extends AppCompatActivity {
                     finish();
                 }
                 else {
-                    文字转语音.setLanguage(Locale.US);
-                    String SINDEEMSG;
-                    SINDEEMSG = "Hello, I am Sin Dee.  Your Personal Assistant. What can I help you?";
-                    欣蒂說(SINDEEMSG);
+                    文字转语音.setLanguage(Locale.CHINESE);
+                    String 欣蒂開始說;
+                    欣蒂開始說 = "嗨， 我是欣蒂，您的虛擬助手。";
+                    欣蒂說(欣蒂開始說);
                 }
             }
         });
@@ -139,7 +139,16 @@ public class SINDEE extends AppCompatActivity {
     }
 
     public void mic(View v){
-        Toast.makeText(getApplicationContext(), "Speak", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),
+                "什麼我可以幫到的嗎？",
+                Toast.LENGTH_SHORT)
+                .show();
+        Intent INT_语音识别;
+        INT_语音识别 = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        INT_语音识别.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        INT_语音识别.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
+        语音识别.startListening(INT_语音识别);
     }
 
     protected void onPause(){
