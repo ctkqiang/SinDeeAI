@@ -7,18 +7,16 @@
     android:background="@android:color/white"
     tools:context=".SINDEE">
 
-    <ImageView
-        android:id="@+id/initial"
-        android:onClick="mic"
-        android:layout_width="89dp"
-        android:layout_height="83dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="521dp"
-        android:layout_marginEnd="135dp"
+    <Button
+        android:id="@+id/欣蒂按键"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="595dp"
         android:layout_marginBottom="36dp"
+        android:background="@mipmap/logo"
+        android:onClick="麥克風"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/logo" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

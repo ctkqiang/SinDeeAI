@@ -11,6 +11,7 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,11 +29,11 @@ import java.util.Locale;
  */
 
 public class SINDEE extends AppCompatActivity {
-    ImageView 欣蒂按键;
+    Button 欣蒂按键;
     TextToSpeech 文字转语音;
     SpeechRecognizer 语音识别;
     Date 日期時間;
-    Calendar 日曆；
+    Calendar 日曆;
 
     public void onStart(){
         super.onStart();
@@ -41,7 +42,7 @@ public class SINDEE extends AppCompatActivity {
 
     // onStart Declaration:
     private void INIT() {
-        欣蒂按键 = findViewById(R.id.initial);
+        欣蒂按键 = findViewById(R.id.欣蒂按键);
         日期時間 = Calendar.getInstance().getTime();
         日曆 = Calendar.getInstance();
     }
@@ -53,6 +54,7 @@ public class SINDEE extends AppCompatActivity {
 
         文字轉語音開始();
         語音識別開始();
+
     }
 
     // 語音識別開始功能:
@@ -128,6 +130,14 @@ public class SINDEE extends AppCompatActivity {
 
         //日期 = String.valueOf(new SimpleDateFormat("HH:MM", Locale.getDefault()));
         //時間 = String.format(日期, new Date());
+
+        if (命令.indexOf("嗨") == -1){
+            欣蒂說("怎麼了");
+        }
+
+        if (命令.contains("hello")){
+            欣蒂說("嗨");
+        }
 
         if (命令.contains("你是誰") || 命令.contains("誰")){
             欣蒂說("我是欣蒂");
