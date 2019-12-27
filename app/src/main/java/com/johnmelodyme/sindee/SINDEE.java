@@ -136,23 +136,29 @@ public class SINDEE extends AppCompatActivity {
         if (命令.indexOf("嗨") == -1){
             欣蒂說("怎麼了");
         }
-
         if (命令.contains("hello")){
             欣蒂說("嗨");
         }
-
         if (命令.contains("你是誰") || 命令.contains("誰")){
             欣蒂說("我是欣蒂");
         }
-
         if (命令.contains("幾點了")){
             欣蒂說("現在是" + SECOND_秒);
         }
-
+        if (命令.contains("谷歌")){
+            String 谷歌;
+            Intent 打開谷歌;
+            谷歌 = "www.google.com";
+            欣蒂說("正在打開谷歌");
+            打開谷歌 = new Intent(Intent.ACTION_VIEW, Uri.parse(谷歌));
+            startActivity(打開谷歌);
+        }
+        if (命令.contains("退出")){
+            SINDEE.this.finish();
+        }
         else {
             欣蒂不明白();
         }
-
     }
 
     // 文字轉語音開始功能:
@@ -212,5 +218,11 @@ public class SINDEE extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
         文字转语音.shutdown();
+    }
+
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
+        this.欣蒂說("再見");
     }
 }
