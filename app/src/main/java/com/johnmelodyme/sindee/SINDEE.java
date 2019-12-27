@@ -14,7 +14,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -27,6 +31,8 @@ public class SINDEE extends AppCompatActivity {
     ImageView 欣蒂按键;
     TextToSpeech 文字转语音;
     SpeechRecognizer 语音识别;
+    Date 日期時間;
+    Calendar 日曆；
 
     public void onStart(){
         super.onStart();
@@ -36,6 +42,8 @@ public class SINDEE extends AppCompatActivity {
     // onStart Declaration:
     private void INIT() {
         欣蒂按键 = findViewById(R.id.initial);
+        日期時間 = Calendar.getInstance().getTime();
+        日曆 = Calendar.getInstance();
     }
 
     @Override
@@ -102,12 +110,35 @@ public class SINDEE extends AppCompatActivity {
     }
 
     // 处理结果功能:
-    private void 处理结果(ArrayList<? extends String> command) {
+    private void 处理结果(ArrayList<? extends String> 命令) {
         // 命令::
-        if (command.contains("誰")){
+
+        // 時間设置:
+        String 時間, 日期, SECOND_秒, HOUR_時, MINUTES_分, DAY_天;
+        int 秒, 時, 分, 天;
+        秒 = 日曆.get(Calendar.SECOND);
+        時 = 日曆.get(Calendar.HOUR);
+        分 = 日曆.get(Calendar.MINUTE);
+        天 = 日曆.get(Calendar.HOUR_OF_DAY);
+        // int 改造成 String:
+        SECOND_秒 = Integer.toString(秒);
+        HOUR_時 = Integer.toString(時);
+        MINUTES_分 = Integer.toString(分);
+        DAY_天 = Integer.toString(天);
+
+        //日期 = String.valueOf(new SimpleDateFormat("HH:MM", Locale.getDefault()));
+        //時間 = String.format(日期, new Date());
+
+        if (命令.contains("你是誰") || 命令.contains("誰")){
             欣蒂說("我是欣蒂");
-        } else {
-            欣蒂說("我不明白");
+        }
+
+        if (命令.contains("幾點了")){
+            欣蒂說("現在是" + SECOND_秒);
+        }
+
+        else {
+            欣蒂不明白();
         }
 
     }
@@ -160,6 +191,10 @@ public class SINDEE extends AppCompatActivity {
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         INT_语音识别.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,1);
         语音识别.startListening(INT_语音识别);
+    }
+
+    private void 欣蒂不明白(){
+        欣蒂說("我不明白");
     }
 
     protected void onPause(){
