@@ -12,17 +12,16 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 /**
  * @AUTHOR : JOHN MELODY MELISSA
- * @COPYRIGHT : 2020
+ * @COPYRIGHT : JOHN MELODY MELISSA COPYRIGHT 2020
  * @PROJECT_NAME: SinDee, {Is a Virtual Assistant Name after My GF}
  */
 
 public class SINDEE extends AppCompatActivity {
-    ImageView SINDEE_VIEW;
+    ImageView 欣蒂按键;
     TextToSpeech textToSpeech;
     SpeechRecognizer speechRecognizer;
 
@@ -33,7 +32,7 @@ public class SINDEE extends AppCompatActivity {
 
     // onStart Declaration:
     private void INIT() {
-        SINDEE_VIEW = findViewById(R.id.initial);
+        欣蒂按键 = findViewById(R.id.initial);
     }
 
     @Override
@@ -41,18 +40,15 @@ public class SINDEE extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        START_TEXT_TO_SPEECH();
-        START_SPEECH_RECOGNICTION();
-
-        // FUNCTION FOR ON PRESSED:
+        文字轉語音開始();
+        語音識別開始();
     }
 
-    private void START_SPEECH_RECOGNICTION() {
+    private void 語音識別開始() {
         if (SpeechRecognizer.isRecognitionAvailable(SINDEE.this)){
             speechRecognizer = SpeechRecognizer.createSpeechRecognizer(SINDEE.this);
             speechRecognizer.setRecognitionListener(new RecognitionListener() {
-                @Override
-                public void onReadyForSpeech(Bundle params) {
+                @Override public void onReadyForSpeech(Bundle params) {
 
                 }
 
@@ -107,12 +103,12 @@ public class SINDEE extends AppCompatActivity {
 
         if (command.contains("who")){
             if(command.contains("are you")){
-                SINDEESAY("I am Sin Dee");
+                欣蒂說("I am Sin Dee");
             }
         }
     }
 
-    private void START_TEXT_TO_SPEECH() {
+    private void 文字轉語音開始() {
         textToSpeech = new TextToSpeech(SINDEE.this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -128,13 +124,13 @@ public class SINDEE extends AppCompatActivity {
                     textToSpeech.setLanguage(Locale.US);
                     String SINDEEMSG;
                     SINDEEMSG = "Hello, I am Sin Dee.  Your Personal Assistant. What can I help you?";
-                    SINDEESAY(SINDEEMSG);
+                    欣蒂說(SINDEEMSG);
                 }
             }
         });
     }
 
-    private void SINDEESAY(String command) {
+    private void 欣蒂說(String command) {
         if (Build.VERSION.SDK_INT > 0b10011){
             textToSpeech.speak(command, TextToSpeech.QUEUE_FLUSH, null, null);
         } else {
