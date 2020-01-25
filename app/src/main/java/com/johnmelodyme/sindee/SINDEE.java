@@ -54,7 +54,6 @@ public class SINDEE extends AppCompatActivity {
 
         文字轉語音開始();
         語音識別開始();
-
     }
 
     // 語音識別開始功能:
@@ -63,32 +62,26 @@ public class SINDEE extends AppCompatActivity {
             语音识别 = SpeechRecognizer.createSpeechRecognizer(SINDEE.this);
             语音识别.setRecognitionListener(new RecognitionListener() {
                 @Override public void onReadyForSpeech(Bundle params) {
-
                 }
 
                 @Override
                 public void onBeginningOfSpeech() {
-
                 }
 
                 @Override
                 public void onRmsChanged(float rmsdB) {
-
                 }
 
                 @Override
                 public void onBufferReceived(byte[] buffer) {
-
                 }
 
                 @Override
                 public void onEndOfSpeech() {
-
                 }
 
                 @Override
                 public void onError(int error) {
-
                 }
 
                 @Override
@@ -102,12 +95,10 @@ public class SINDEE extends AppCompatActivity {
 
                 @Override
                 public void onPartialResults(Bundle partialResults) {
-
                 }
 
                 @Override
                 public void onEvent(int eventType, Bundle params) {
-
                 }
             });
         }
@@ -133,7 +124,7 @@ public class SINDEE extends AppCompatActivity {
         //日期 = String.valueOf(new SimpleDateFormat("HH:MM", Locale.getDefault()));
         //時間 = String.format(日期, new Date());
 
-        if (命令.indexOf("嗨") == -1){
+        if (命令.indexOf("hi") == -1){
             欣蒂說("怎麼了");
         }
         if (命令.contains("hello")){
